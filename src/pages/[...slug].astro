@@ -4,7 +4,7 @@ import BlogPost from '../layouts/BlogPost.astro';
 
 const posts = await getCollection('blog');
 const { slug } = Astro.params;
-const post = posts.find((post) => post.slug === slug);
+const post = posts.find((post) => post.slug === slug && !post.data.draft);
 if (!post) {
 	return Astro.redirect("/404");
 }
